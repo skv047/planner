@@ -150,3 +150,53 @@ h1 {
         gap: 15px;
     }
 }
+.settings-container {
+    margin-bottom: 20px;
+}
+
+#settingsBtn {
+    background: #444;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 10px;
+}
+
+#settingsMenu {
+    margin-top: 10px;
+    padding: 15px;
+    background: #f1f5f9;
+    border-radius: 12px;
+}
+
+.hidden {
+    display: none;
+}
+
+.theme-btn {
+    margin: 5px;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.theme-blue {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+.theme-purple {
+    background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+}
+
+.theme-green {
+    background: linear-gradient(135deg, #22c55e, #15803d);
+}
+
+.theme-pink {
+    background: linear-gradient(135deg, #ec4899, #be185d);
+}
+
+.theme-dark {
+    background: #111827;
+}
