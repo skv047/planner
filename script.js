@@ -9,40 +9,30 @@ const totalTasks = document.getElementById("totalTasks");
 const completedTasks = document.getElementById("completedTasks");
 const progressPercent = document.getElementById("progressPercent");
 
-let tasks =
-JSON.parse(localStorage.getItem("tasks")) || [];
+let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
+// ==================== TASKS ====================
 
 function saveTasks() {
-    localStorage.setItem(
-        "tasks",
-        JSON.stringify(tasks)
-    );
+    localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
 function updateStats() {
-
-    const completed =
-    tasks.filter(
+    const completed = tasks.filter(
         task => task.completed
     ).length;
 
-    totalTasks.textContent =
-    tasks.length;
-
-    completedTasks.textContent =
-    completed;
+    totalTasks.textContent = tasks.length;
+    completedTasks.textContent = completed;
 
     const percent =
-    tasks.length === 0
-    ? 0
-    : Math.round(
-        completed /
-        tasks.length *
-        100
-    );
+        tasks.length === 0
+            ? 0
+            : Math.round(
+                (completed / tasks.length) * 100
+            );
 
-    progressPercent.textContent =
-    percent + "%";
+    progressPercent.textContent = percent + "%";
 }
 
 function renderTasks() {
@@ -51,45 +41,61 @@ function renderTasks() {
 
     tasks.forEach(task => {
 
-        const div =
-        document.createElement("div");
+        const taskDiv =
+            document.createElement("div");
 
-        div.className =
-        `task ${task.priority.toLowerCase()}`;
+        taskDiv.className =
+            `task ${task.priority.toLowerCase()}`;
 
-        if(task.completed){
-            div.classList.add("completed");
+        if (task.completed) {
+            taskDiv.classList.add("completed");
         }
 
-        div.innerHTML = `
-        <div>
-            <h3>${task.title}</h3>
-            <p>Prioritate: ${task.priority}</p>
-            <p>Deadline: ${task.deadline || "Nespecificat"}</p>
-        </div>
+        taskDiv.innerHTML = `
+            <div>
+                <h3>${task.title}</h3>
 
-        <div class="task-actions">
+                <p>
+                    Prioritate:
+                    ${task.priority}
+                </p>
 
-            <button
-            class="complete-btn"
-            onclick="toggleTask(${task.id})">
+                <p>
+                    Deadline:
+                    ${
+                        task.deadline
+                        ? task.deadline
+                        : "Nespecificat"
+                    }
+                </p>
+            </div>
 
-            ${task.completed ? "↩️" : "✅"}
+            <div class="task-actions">
 
-            </button>
+                <button
+                    class="complete-btn"
+                    onclick="toggleTask(${task.id})">
 
-            <button
-            class="delete-btn"
-            onclick="deleteTask(${task.id})">
+                    ${
+                        task.completed
+                        ? "↩️"
+                        : "✅"
+                    }
 
-            🗑️
+                </button>
 
-            </button>
+                <button
+                    class="delete-btn"
+                    onclick="deleteTask(${task.id})">
 
-        </div>
+                    🗑️
+
+                </button>
+
+            </div>
         `;
 
-        taskList.appendChild(div);
+        taskList.appendChild(taskDiv);
     });
 
     updateStats();
@@ -98,54 +104,56 @@ function renderTasks() {
 function addTask() {
 
     const title =
-    taskInput.value.trim();
+        taskInput.value.trim();
 
-    if(!title){
+    if (!title) {
+        alert("Introdu un task!");
         return;
     }
 
-    tasks.push({
+    const newTask = {
         id: Date.now(),
         title: title,
         priority: priorityInput.value,
         deadline: deadlineInput.value,
         completed: false
-    });
+    };
+
+    tasks.push(newTask);
 
     saveTasks();
     renderTasks();
 
     taskInput.value = "";
     deadlineInput.value = "";
+    priorityInput.value = "Medium";
 }
 
-function toggleTask(id){
+function toggleTask(id) {
 
     tasks = tasks.map(task => {
 
-        if(task.id === id){
+        if (task.id === id) {
 
             return {
                 ...task,
-                completed:
-                !task.completed
+                completed: !task.completed
             };
         }
 
         return task;
-
     });
 
     saveTasks();
     renderTasks();
 }
 
-function deleteTask(id){
+function deleteTask(id) {
 
     tasks =
-    tasks.filter(
-        task => task.id !== id
-    );
+        tasks.filter(
+            task => task.id !== id
+        );
 
     saveTasks();
     renderTasks();
@@ -158,70 +166,98 @@ addTaskBtn.addEventListener(
 
 renderTasks();
 
+// ==================== SETTINGS ====================
+
 const settingsBtn =
-document.getElementById(
-    "settingsBtn"
-);
+    document.getElementById("settingsBtn");
 
 const settingsModal =
-document.getElementById(
-    "settingsModal"
-);
+    document.getElementById("settingsModal");
 
 const closeSettings =
-document.getElementById(
-    "closeSettings"
-);
+    document.getElementById("closeSettings");
 
-settingsBtn.addEventListener(
-    "click",
-    () => {
-        settingsModal.classList.remove(
-            "hidden"
-        );
-    }
-);
+if (settingsBtn) {
 
-closeSettings.addEventListener(
-    "click",
-    () => {
-        settingsModal.classList.add(
-            "hidden"
-        );
-    }
-);
+    settingsBtn.addEventListener(
+        "click",
+        () => {
+            settingsModal.classList.remove(
+                "hidden"
+            );
+        }
+    );
+
+}
+
+if (closeSettings) {
+
+    closeSettings.addEventListener(
+        "click",
+        () => {
+            settingsModal.classList.add(
+                "hidden"
+            );
+        }
+    );
+
+}
+
+// ==================== THEMES ====================
 
 const themeButtons =
-document.querySelectorAll(
-    ".theme-btn"
-);
+    document.querySelectorAll(".theme-btn");
 
-themeButtons.forEach(btn => {
+themeButtons.forEach(button => {
 
-    btn.addEventListener(
+    button.addEventListener(
         "click",
         () => {
 
             const theme =
-            btn.dataset.theme;
+                button.dataset.theme;
 
-            document.body.className =
-            theme;
+            document.body.classList.remove(
+                "blue",
+                "purple",
+                "green",
+                "pink",
+                "dark"
+            );
+
+            document.body.classList.add(
+                theme
+            );
 
             localStorage.setItem(
                 "theme",
                 theme
             );
-
         }
     );
 
 });
 
-const savedTheme =
-localStorage.getItem("theme");
+// Încarcă tema salvată
 
-if(savedTheme){
-    document.body.className =
-    savedTheme;
+const savedTheme =
+    localStorage.getItem("theme");
+
+if (savedTheme) {
+
+    document.body.classList.remove(
+        "blue",
+        "purple",
+        "green",
+        "pink",
+        "dark"
+    );
+
+    document.body.classList.add(
+        savedTheme
+    );
 }
+
+console.log(
+    "Monthly Planner Loaded ✅"
+);
