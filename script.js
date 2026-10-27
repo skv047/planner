@@ -126,3 +126,53 @@ function deleteTask(id) {
 addTaskBtn.addEventListener("click", addTask);
 
 renderTasks();
+const settingsBtn =
+    document.getElementById("settingsBtn");
+
+const settingsMenu =
+    document.getElementById("settingsMenu");
+
+settingsBtn.addEventListener(
+    "click",
+    () => {
+        settingsMenu.classList.toggle("hidden");
+    }
+);
+
+const themeButtons =
+    document.querySelectorAll(".theme-btn");
+
+themeButtons.forEach(button => {
+    button.addEventListener("click", () => {
+
+        const theme =
+            button.dataset.theme;
+
+        document.body.classList.remove(
+            "theme-blue",
+            "theme-purple",
+            "theme-green",
+            "theme-pink",
+            "theme-dark"
+        );
+
+        document.body.classList.add(
+            `theme-${theme}`
+        );
+
+        localStorage.setItem(
+            "theme",
+            theme
+        );
+
+    });
+});
+
+const savedTheme =
+    localStorage.getItem("theme");
+
+if (savedTheme) {
+    document.body.classList.add(
+        `theme-${savedTheme}`
+    );
+}
