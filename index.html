@@ -1,1 +1,69 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monthly Planner</title>
 
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+
+        <h1>📋 Monthly Planner</h1>
+
+        <div class="form">
+
+            <input
+                type="text"
+                id="taskInput"
+                placeholder="Introdu task-ul..."
+            >
+
+            <select id="priority">
+                <option value="Low">🟢 Low</option>
+                <option value="Medium" selected>🟡 Medium</option>
+                <option value="High">🔴 High</option>
+            </select>
+
+            <input
+                type="date"
+                id="deadline"
+            >
+
+            <button id="addTaskBtn">
+                Adaugă Task
+            </button>
+
+        </div>
+
+        <div class="stats">
+
+            <div>
+                <strong>Total:</strong>
+                <span id="totalTasks">0</span>
+            </div>
+
+            <div>
+                <strong>Finalizate:</strong>
+                <span id="completedTasks">0</span>
+            </div>
+
+            <div>
+                <strong>Progres:</strong>
+                <span id="progressPercent">0%</span>
+            </div>
+
+        </div>
+
+        <div id="taskList">
+
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
