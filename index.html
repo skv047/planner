@@ -7,97 +7,97 @@
 
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="blue">
 
-    <div class="container">
+<div class="container">
 
-        <h1>📋 Monthly Planner</h1>
-
-        <div class="settings-container">
+    <h1>📋 Monthly Planner</h1>
 
     <button id="settingsBtn">
         ⚙️ Settings
     </button>
 
-    <div id="settingsMenu" class="hidden">
+    <div id="settingsModal" class="modal hidden">
+        <div class="modal-content">
 
-        <h3>Temă</h3>
+            <h2>Personalizare</h2>
 
-        <button class="theme-btn" data-theme="blue">
-            🔵 Albastru
-        </button>
+            <button class="theme-btn" data-theme="blue">
+                🔵 Albastru
+            </button>
 
-        <button class="theme-btn" data-theme="purple">
-            🟣 Violet
-        </button>
+            <button class="theme-btn" data-theme="purple">
+                🟣 Violet
+            </button>
 
-        <button class="theme-btn" data-theme="green">
-            🟢 Verde
-        </button>
+            <button class="theme-btn" data-theme="green">
+                🟢 Verde
+            </button>
 
-        <button class="theme-btn" data-theme="pink">
-            🩷 Roz
-        </button>
+            <button class="theme-btn" data-theme="pink">
+                🩷 Roz
+            </button>
 
-        <button class="theme-btn" data-theme="dark">
-            🌙 Dark Mode
-        </button>
+            <button class="theme-btn" data-theme="dark">
+                🌙 Dark
+            </button>
 
-    </div>
-
-</div>
-
-        <div class="form">
-
-            <input
-                type="text"
-                id="taskInput"
-                placeholder="Introdu task-ul..."
-            >
-
-            <select id="priority">
-                <option value="Low">🟢 Low</option>
-                <option value="Medium" selected>🟡 Medium</option>
-                <option value="High">🔴 High</option>
-            </select>
-
-            <input
-                type="date"
-                id="deadline"
-            >
-
-            <button id="addTaskBtn">
-                Adaugă Task
+            <button id="closeSettings">
+                Închide
             </button>
 
         </div>
+    </div>
 
-        <div class="stats">
+    <div class="form">
 
-            <div>
-                <strong>Total:</strong>
-                <span id="totalTasks">0</span>
-            </div>
+        <input
+            type="text"
+            id="taskInput"
+            placeholder="Task nou..."
+        >
 
-            <div>
-                <strong>Finalizate:</strong>
-                <span id="completedTasks">0</span>
-            </div>
+        <select id="priority">
+            <option value="Low">🟢 Low</option>
+            <option value="Medium">🟡 Medium</option>
+            <option value="High">🔴 High</option>
+        </select>
 
-            <div>
-                <strong>Progres:</strong>
-                <span id="progressPercent">0%</span>
-            </div>
+        <input
+            type="date"
+            id="deadline"
+        >
 
+        <button id="addTaskBtn">
+            Adaugă
+        </button>
+
+    </div>
+
+    <div class="stats">
+
+        <div>
+            Total:
+            <span id="totalTasks">0</span>
         </div>
 
-        <div id="taskList">
+        <div>
+            Finalizate:
+            <span id="completedTasks">0</span>
+        </div>
 
+        <div>
+            Progres:
+            <span id="progressPercent">0%</span>
         </div>
 
     </div>
 
-    <script src="script.js"></script>
+    <div id="taskList"></div>
+
+</div>
+
+<script src="script.js"></script>
 
 </body>
 </html>
