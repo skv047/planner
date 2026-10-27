@@ -4,123 +4,101 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Monthly Planner</title>
-
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body class="blue">
 
-    <div class="container">
+<div class="container">
 
-        <h1>📋 Monthly Planner</h1>
+    <h1>📋 Monthly Planner</h1>
 
-        <button id="settingsBtn">
-            ⚙️ Settings
-        </button>
+    <button id="settingsBtn" class="settings-btn">
+        ⚙️ Settings
+    </button>
 
-        <div id="settingsModal" class="modal hidden">
+    <div id="settingsModal" class="modal hidden">
 
-            <div class="modal-content">
+        <div class="modal-content">
 
-                <h2>Personalizare</h2>
+            <h2>Personalizare</h2>
 
-                <button
-                    class="theme-btn"
-                    data-theme="blue">
-                    🔵 Albastru
-                </button>
+            <button class="theme-btn" data-theme="blue">
+                🔵 Albastru
+            </button>
 
-                <button
-                    class="theme-btn"
-                    data-theme="purple">
-                    🟣 Violet
-                </button>
+            <button class="theme-btn" data-theme="purple">
+                🟣 Violet
+            </button>
 
-                <button
-                    class="theme-btn"
-                    data-theme="green">
-                    🟢 Verde
-                </button>
+            <button class="theme-btn" data-theme="green">
+                🟢 Verde
+            </button>
 
-                <button
-                    class="theme-btn"
-                    data-theme="pink">
-                    🩷 Roz
-                </button>
+            <button class="theme-btn" data-theme="pink">
+                🩷 Roz
+            </button>
 
-                <button
-                    class="theme-btn"
-                    data-theme="dark">
-                    🌙 Dark
-                </button>
+            <button class="theme-btn" data-theme="dark">
+                🌙 Dark
+            </button>
 
-                <button id="closeSettings">
-                    Închide
-                </button>
-
-            </div>
-
-        </div>
-
-        <div class="form">
-
-            <input
-                type="text"
-                id="taskInput"
-                placeholder="Task nou..."
-            >
-
-            <select id="priority">
-
-                <option value="Low">
-                    🟢 Low
-                </option>
-
-                <option value="Medium">
-                    🟡 Medium
-                </option>
-
-                <option value="High">
-                    🔴 High
-                </option>
-
-            </select>
-
-            <input
-                type="date"
-                id="deadline"
-            >
-
-            <button id="addTaskBtn">
-                Adaugă
+            <button id="closeSettings">
+                Închide
             </button>
 
         </div>
 
-        <div class="stats">
+    </div>
 
-            <div>
-                Total:
-                <span id="totalTasks">0</span>
-            </div>
+    <div class="form">
 
-            <div>
-                Finalizate:
-                <span id="completedTasks">0</span>
-            </div>
+        <input
+            type="text"
+            id="taskInput"
+            placeholder="Adaugă un task..."
+        >
 
-            <div>
-                Progres:
-                <span id="progressPercent">0%</span>
-            </div>
+        <select id="priority">
+            <option value="Low">🟢 Low</option>
+            <option value="Medium">🟡 Medium</option>
+            <option value="High">🔴 High</option>
+        </select>
 
-        </div>
+        <input
+            type="date"
+            id="deadline"
+        >
 
-        <div id="taskList"></div>
+        <button id="addTaskBtn">
+            Adaugă
+        </button>
 
     </div>
 
-    <script src="script.js"></script>
+    <div class="stats">
+
+        <div>
+            Total:
+            <span id="totalTasks">0</span>
+        </div>
+
+        <div>
+            Finalizate:
+            <span id="completedTasks">0</span>
+        </div>
+
+        <div>
+            Progres:
+            <span id="progressPercent">0%</span>
+        </div>
+
+    </div>
+
+    <div id="taskList"></div>
+
+</div>
+
+<script src="script.js"></script>
 
 </body>
 </html>
